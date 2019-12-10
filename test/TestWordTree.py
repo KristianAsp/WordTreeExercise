@@ -77,6 +77,16 @@ class TestAddToWordTree(unittest.TestCase):
         expected_result = "(c, 0) -> [None, None, (d, 0) -> [None, None, None]]"
         self.assertEqual(str(parent_node), expected_result)
 
+    def test_add_substring_of_existing_word(self):
+        wordTree = WordTree()
+        wordTree.add("car")
+        wordTree.add("can")
+        wordTree.add("cat")
+
+        wordTree.add("ca")
+        expected_result = "(c, 0) -> [None, (a, 1) -> [None, (r, 1) -> [(n, 1) -> [None, None, None], None, (t, 1) -> [None, None, None]], None], None]"
+        self.assertEqual(str(wordTree), expected_result)
+
 class TestCountWordTree(unittest.TestCase):
     def test_count_word_added_once(self):
         wordTree = WordTree()

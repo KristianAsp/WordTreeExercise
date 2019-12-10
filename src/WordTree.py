@@ -24,6 +24,8 @@ class WordTree:
                 if character == self.pointer.character:
                     if self.pointer.middle is None:
                         continue
+                    elif index == len(word) - 1:
+                        break
                     else:
                         self.pointer = self.pointer.middle
                 elif self.pointer.middle is None and self.pointer.character == word[index - 1]:
