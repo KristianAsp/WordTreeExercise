@@ -110,6 +110,13 @@ class TestCountWordTree(unittest.TestCase):
         result = wordTree.count("")
         self.assertEqual(result, None)
 
+class TestMinstWordTree(unittest.TestCase):
+    def test_minst_with_empty_tree(self):
+        wordTree = WordTree()
+        result = wordTree.minst()
+        self.assertEqual(None, result)
+
+
 class TestWordTreeNode(unittest.TestCase):
 
     def test_new_word_tree_node(self):

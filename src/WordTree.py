@@ -75,5 +75,13 @@ class WordTree:
             else:
                 return None
 
+
+    # Find lexicographically smallest word in tree
+    def minst(self):
+        if self.root is None:
+            return None
+
+
+
     def __str__(self):
         return str(self.root)
