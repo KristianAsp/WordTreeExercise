@@ -81,7 +81,21 @@ class WordTree:
         if self.root is None:
             return None
 
+        pointer = self.root
+        constructed_word = ""
 
+        while True:
+            if pointer.left is not None:
+                pointer = pointer.left
+                continue
+            else:
+                constructed_word += pointer.character
+            if pointer.multiplicity != 0:
+                return constructed_word
+            elif pointer.middle is not None:
+                pointer = pointer.middle
+            else:
+                return None
 
     def __str__(self):
         return str(self.root)

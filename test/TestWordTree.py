@@ -116,6 +116,25 @@ class TestMinstWordTree(unittest.TestCase):
         result = wordTree.minst()
         self.assertEqual(None, result)
 
+    def test_minst_with_single_word_in_tree(self):
+        wordTree = WordTree()
+        wordTree.add("car")
+        result = wordTree.minst()
+        self.assertEqual("car", result)
+
+    def test_minst_with_single_character_word(self):
+        wordTree = WordTree()
+        wordTree.add("car")
+        wordTree.add("b")
+        result = wordTree.minst()
+        self.assertEqual("b", result)
+
+    def test_minst_with_multiple_same_word(self):
+        wordTree = WordTree()
+        wordTree.add("car")
+        wordTree.add("car")
+        result = wordTree.minst()
+        self.assertEqual("car", result)
 
 class TestWordTreeNode(unittest.TestCase):
 
