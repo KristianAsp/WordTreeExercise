@@ -25,7 +25,7 @@ class WordTree:
                     if self.pointer.middle is None:
                         continue
                     elif index == len(word) - 1:
-                        break
+                        break # Last character so just break and let the multiplicity be increased
                     else:
                         self.pointer = self.pointer.middle
                 elif self.pointer.middle is None and self.pointer.character == word[index - 1]:
@@ -98,6 +98,33 @@ class WordTree:
                 pointer = pointer.middle
             else:
                 return None
+
+    def remove(self, word):
+        if self.root is None:
+            return None
+
+
+        if self.count(word) == 0:
+            return None  # We can use our existing count function to check if the word exists in the tree in the first place
+
+        pointer = self.root
+        parent_node = None
+        while len(word) != 0:
+            character = word[0]
+            if pointer.character == character and len(word) == 1:
+                if pointer.multiplicity > 1:
+                    pointer.multiplicity -= 1
+                    self.size -= 1
+                    return
+
+                elif pointer.multiplicity == 1:
+                    if pointer.left is not None or pointer.right is not None:
+                        return
+                    else:
+                        parent_node.middle = None
+                        self.size -= 1
+                        return
+
 
     def __str__(self):
         return str(self.root)

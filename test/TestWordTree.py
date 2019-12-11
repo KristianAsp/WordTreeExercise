@@ -146,6 +146,42 @@ class TestMinstWordTree(unittest.TestCase):
         result = wordTree.minst()
         self.assertEqual("car", result)
 
+class TestRemoveWordTree(unittest.TestCase):
+    def test_remove_word_empty_tree(self):
+        wordTree = WordTree()
+        wordTree.remove("car")
+        self.assertEqual("None", str(wordTree))
+
+    def test_remove_empty_string(self):
+        wordTree = WordTree()
+        wordTree.add("car")
+        expected_result = str(wordTree)
+        self.assertEqual(wordTree.size, 1)
+        wordTree.remove("new")
+        new_result = str(wordTree)
+        self.assertEqual(wordTree.size, 1)
+        self.assertEqual(expected_result, new_result)
+
+    def test_remove_last_word(self):
+        wordTree = WordTree()
+        wordTree.add("car")
+        self.assertEqual(wordTree.size, 1)
+        wordTree.remove("car")
+        self.assertEqual(wordTree.size, 0)
+        self.assertEqual("None", str(wordTree))
+
+    def test_remove_one_of_many_same_word(self):
+        wordTree = WordTree()
+        wordTree.add("car")
+        wordTree.add("car")
+        wordTree.add("car")
+        wordTree.add("car")
+        self.assertEqual(wordTree.size, 4)
+        wordTree.remove("car")
+        self.assertEqual(wordTree.size, 3)
+        expected_result = "(c, 0) -> [None, (a, 0) -> [None, (r, 3) -> [None, None, None], None], None]"
+        self.assertEqual(expected_result, str(wordTree))
+
 class TestWordTreeNode(unittest.TestCase):
 
     def test_new_word_tree_node(self):
